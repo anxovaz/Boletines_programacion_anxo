@@ -3,6 +3,6 @@
 
 ## Anxo Vázquez Lorenzo
 
-Cada boletín tendrá de nome `boletin + numero + extensión`.
+Cada boletín tendrá como nome `boletin + número + extensión do arquivo`.
 
-A carpeta chamada `images` contendrá imaxes usadas nos arquivos coa extensión `.md`
+A carpeta chamada `./images` contén as imaxes empregadas nos arquivos coa extensión `.md`
