@@ -3,4 +3,6 @@
 
 ## Anxo Vázquez Lorenzo
 
-Cada boletín tendra en nombre `boletin + numero + .py`
+Cada boletín tendrá de nome `boletin + numero + extensión`.
+
+A carpeta chamada `images` contendrá imaxes usadas nos arquivos coa extensión `.md`
