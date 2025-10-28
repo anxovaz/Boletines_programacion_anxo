@@ -1,16 +1,18 @@
 print("Ejercicio 1") #pendiente de arreglar, si no empieza por 1 no va
-tupla1=(1,2,3,4,5,6,7)
+tupla1=(-1,2,3,4,5,5,6,9)
 ordenado=True
 
-for i in range(len(tupla1)):
-    i+=1
-    if i != tupla1[i-1]:
-        ordenado = False
+num_anterior=-999999
+for i in tupla1:
+    if i < num_anterior:
+        ordenado=False
         break
+    else:
+        num_anterior=i
 
-if ordenado == False:
-    print("No está ordenada")
+if ordenado==True:
+    print("La lista está ordenada")
 else:
-    print("Está ordenada")
+    print("La lista está desordenada")
 
 print("Ejercicio 2")
