@@ -3,16 +3,17 @@ Ejercicio 1
 Crea unha clase chamada Libro que conteña os seguintes atributos:
 titulo autor ano numPaginas valoracion
 
-A clase debe de ter o método de inicialización.
+A clase debe de ter o metodo de inicialización.
 Establecer os métodos de acceso para todos os atributos (geters). 
 Crear os métodos de asignación dos atributos (seters)
 Establecer as propiedades de forma que só se poida acceder os atributos mediante os métodos adicados a elo (geters e seters).
 Codificar o metodo amosarLibro, que devolte unha cadea e visualiza tódalas característica dun libro. 
-Crear unha clase Principal co método main. Crear un libro con cada construtor e mostrar por consola a súa información. 
+Crear unha clase Principal co metodo main. Crear un libro con cada construtor e mostrar por consola a súa información.
 """
 
 class Libro:
     def __init__(self,titulo,autor, anho,numPaginas,valoracion):
+        #los setters se encargan de inicializar las variables
         self.setTitulo(titulo)
         self.setAutor(autor)
         self.setAnho(anho)
@@ -162,7 +163,7 @@ class Consumo():
         #100  ------ x
         return (100 * self.__litros)/self.__km
 
-    def consumoEuros(self):
+    def consumoEuros(self): #consumo medio * precio gasolina
         return self.consumoMedio() * self.__pGas
 
 """
@@ -182,7 +183,7 @@ class Coche():
     def __init__(self):
         self.velocidade = 0
 
-    def getVelocidade(self):
+    def getVelocidade(self): #devuelve la velocidad
         return self.velocidade
     def acelerar(self,incremento):
         self.velocidade += incremento
@@ -191,10 +192,10 @@ class Coche():
 
 class Boletin9_3():
     def main(self):
-        coche1 = Coche()
+        coche1 = Coche() #declaro coche sin nada, ya que el ejercicio no indica introducir una velocidad inicial en el __init__ de la clase
         coche1.acelerar(100)
         coche1.frenar(20)
-        print(coche1.getVelocidade())
+        print(coche1.getVelocidade()) #da 80
 
 
 """4. Escribe unha clase Conta para representar unha conta bancaria. Os datos da conta son:
@@ -217,6 +218,7 @@ Proba o funcionamento da clase Conta na clase principal.
 
 class Cuenta():
     def __init__(self, nombre, numero, tipo, saldo):
+        #los setters inicializan las variables
         self.setNombre(nombre)
         self.setNumero(numero)
         self.setTipo(tipo)
