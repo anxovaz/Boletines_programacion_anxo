@@ -165,7 +165,119 @@ class Consumo():
     def consumoEuros(self):
         return self.consumoMedio() * self.__pGas
 
+"""
+class Coche: 
+def __init__(self):
+self.velocidade =0 
 
+
+Engade a clase Coche os seguintes métodos:
+getVelocidade() . Este método devolve a velocidade actual
+acelerar (valor). Este método incrementa a velocidade na cantidade valor.
+frenar (menos). Este método diminue a velocidade na cantidade menos.
+Crea unha clase Boletin 9_3 para comprobar que o programa execútase ben, dandolle os valores que precises.
+
+"""
+class Coche():
+    def __init__(self):
+        self.velocidade = 0
+
+    def getVelocidade(self):
+        return self.velocidade
+    def acelerar(self,incremento):
+        self.velocidade += incremento
+    def frenar(self,decremento):
+        self.velocidade -= decremento
+
+class Boletin9_3():
+    def main(self):
+        coche1 = Coche()
+        coche1.acelerar(100)
+        coche1.frenar(20)
+        print(coche1.getVelocidade())
+
+
+"""4. Escribe unha clase Conta para representar unha conta bancaria. Os datos da conta son:
+Atributos : 
+Nome do cliente. 
+Número de conta.
+Tipo de interese.
+Saldo.
+
+A clase conterá os seguintes métodos:
+Método inicializador.
+Métodos setters/ getters para asignar e obter os datos da conta.
+Establecer as propiedades de forma que só se poida acceder os atributos mediante os métodos adicados a elo (geters e seters).
+Métodos de ingreso. Un ingreso consiste en aumentar o saldo na cantidade que se indique. 
+Métodos de reintegro. Un reintegro consiste en diminuír o saldo nunha cantidade. A cantidade non pode ser negativa. 
+Método transferencia que permita pasar diñeiro dunha conta a outra Exemplo de uso do método transferencia:
+ contaOrigen.transferencia( contaDestino, importe),  que indica que queremos facer unha transferencia desde contaOrigen a contaDestino do importe indicado.
+Proba o funcionamento da clase Conta na clase principal.
+"""
+
+class Cuenta():
+    def __init__(self, nombre, numero, tipo, saldo):
+        self.setNombre(nombre)
+        self.setNumero(numero)
+        self.setTipo(tipo)
+        self.setSaldo(saldo)
+    def setNombre(self,nombre):
+        if isinstance(nombre,str):
+            self.__nombre = nombre
+        else:
+            self.__nombre = None
+
+    def setNumero(self,numero):
+        if isinstance(numero,str):
+            self.__numero = numero
+        else:
+            self.__numero = None
+
+    def setTipo(self,tipo):
+        if isinstance(tipo,str) or isinstance(tipo,int):
+            self.__tipo = float(tipo)
+        elif isinstance(tipo,float):
+            self.__tipo = tipo
+        else:
+            self.__tipo = None
+
+    def setSaldo(self,saldo):
+        if isinstance(saldo,str) or isinstance(saldo,int):
+            self.__saldo = float(saldo)
+        elif isinstance(saldo,float):
+            self.__saldo = saldo
+        else:
+            self.__saldo = None
+
+    def getNombre(self):
+        return self.__nombre
+    def getNumero(self):
+        return self.__numero
+    def getTipo(self):
+        return self.__tipo
+    def getSaldo(self):
+        return self.__saldo
+
+    def ingreso(self,cantidad):
+        self.saldo += cantidad
+    def reintegro(self,cantidad):
+        if self.__saldo >= cantidad:
+            self.saldo -= cantidad
+            return True
+        else: #no se puede restar ya que no puede quedar en negativo
+            return False
+
+    def transferencia(self,contaDestino,importe):
+        if self.reintegro(importe): #comprueba que al usuario se le pueda sacar dinero de la cuenta y se lo quita si devuelve true
+            contaDestino.ingreso(importe)#le agrega el dinero
+
+    def __str__(self):
+        return "Nombre: " + str(self.__nombre) + "\nNúmero de cuenta: " + str(self.__numero) + "\nSaldo: " + str(self.__saldo) + "\nTipo interés:" + str(self.__tipo)
+
+    nombre = property(getNombre,setNombre)
+    numero = property(getNumero,setNumero)
+    tipo = property(getTipo,setTipo)
+    saldo = property(getSaldo,setSaldo)
 
 if __name__ == "__main__":
     print("---- Ejercicio 1 ----")
@@ -180,6 +292,14 @@ if __name__ == "__main__":
     print(consumo1.consumoMedio())
     print(consumo1.consumoEuros())
 
+    print("---- Ejercicio 3 ----")
+    Boletin9_3().main()
 
-
+    print("---- Ejercicio 4 ----")
+    cuenta1 = Cuenta("Nombre1","0000 0000 0000 0000", 5, 50)
+    cuenta2 = Cuenta("Nombre2", "0000 0000 0000 0001", 5, 50)
+    cuenta1.transferencia(cuenta2,50)
+    print(cuenta1)
+    print("---")
+    print(cuenta2)
 
