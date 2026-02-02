@@ -87,9 +87,109 @@ class Deportista(Persona):
 
 #Ejercicio 2
 class Data():
+    def __init__(self, dia, mes, anho):
+        self.setMes(mes)
+        self.setAnho(anho)
+        self.setDia(dia)
 
+    def setAnho(self, anho):
+        if isinstance(anho, int):
+            self.__anho = anho
+        elif isinstance(anho, str):
+            if anho.isnumeric():
+                self.__anho = int(anho)
+            else:
+                raise ValueError("Anho incorrecto")
+        elif isinstance(anho, float):
+            self.__anho = int(anho)
+        elif isinstance(anho, list) or isinstance(anho, tuple):
+            if len(anho) == 1 and anho[0].isnumeric():
+                self.__anho = anho[0]
+            else:
+                raise ValueError("Anho incorrecto")
+        else:
+            raise TypeError("Anho incorrecto, tipo incorrecto")
 
+    def setMes(self, mes):
+        if isinstance(mes, str):
+            if mes.isnumeric():
+                self.__mes = int(mes)
+            else:
+                raise ValueError("Formato incorreto, los meses tienen que estar entre 1 y 12")
+        elif isinstance(mes, int):
+            if mes <= 12 and mes > 0:
+                self.__mes = mes
+            else:
+                raise ValueError("Valor incorreto, los meses tienen que estar entre 1 y 12")
+        elif isinstance(mes, float):
+            if mes <= 12 and mes > 0:
+                self.__mes = int(mes)
+            else:
+                raise ValueError("Valor incorreto, los meses tienen que estar entre 1 y 12")
+        elif isinstance(mes, list) or isinstance(mes, tuple):
+            if len(mes) == 1:
+                self.__mes = int(mes[0])
+            else:
+                raise ValueError("Valor incorreto, los meses tienen que estar entre 1 y 12")
+        else:
+            raise TypeError("Tipo de dato incorrecto para mes")
 
+    def setDia(self, dia):
+        if isinstance(dia, str):
+            if dia.isnumeric():
+                posibleDia = int(dia)
+            else:
+                raise ValueError("Dia incorrecto, introduce un número")
+        elif isinstance(dia, int):
+            posibleDia = dia
+        elif isinstance(dia, float):
+            posibleDia = int(dia)
+        elif isinstance(dia, list) or isinstance(dia, tuple):
+            if len(dia) == 1:
+                posibleDia = int(dia[0])
+            else:
+                raise ValueError("Dia incorrecto, introduce un número")
+        else:
+            raise TypeError("Tipo de dato incorrecto para dia")
+
+        if self.__mes in [1,3,5,7,8,10,12]: #31 dias
+            if posibleDia <= 31 and posibleDia > 0:
+                self.__dia = posibleDia
+            else:
+                raise ValueError("Dia incorrecto")
+        elif self.__mes in [4,6,9,11]: #30 dias
+            if posibleDia <= 30 and posibleDia > 0:
+                self.__dia = posibleDia
+            else:
+                raise ValueError("Dia incorrecto")
+        else: #febrero
+            if self.__esBisiesto(self.__anho):
+                if posibleDia <= 29 and posibleDia > 0:
+                    self.__dia = posibleDia
+                else:
+                    raise ValueError("Dia incorrecto para febrero")
+            else:
+                if posibleDia <= 28 and posibleDia > 0:
+                    self.__dia = posibleDia
+                else:
+                    raise ValueError("Dia incorrecto para febrero")
+
+    def __esBisiesto(self, anho):
+        return (self.__anho % 4 == 0 and self.__anho % 100 != 0) or (self.__anho % 400 == 0)
+
+    def getDia(self):
+        return self.__dia
+    def getMes(self):
+        return self.__mes
+    def getAnho(self):
+        return self.__anho
+
+    def __str__(self):
+        return f"Dia: {self.__dia}, Mes: {self.__mes}, Anho: {self.__anho}"
+
+    dia = property(getDia, setDia)
+    mes = property(getMes, setMes)
+    anho = property(getAnho, setAnho)
 
 if __name__ == '__main__':
     print("--- Ejercicio 1 ---")
@@ -97,6 +197,8 @@ if __name__ == '__main__':
     print(persona)
 
     print("--- Ejercicio 2 ---")
+    dia = Data(29.9, "2", 2024)
+    print(dia)
 
 
 
