@@ -1,5 +1,4 @@
 #Ficheros boletín 11
-
 '''Ejercicio 1
 Crear un programa xestor de notas persoais, que permita ao usuario gardar e consultar notas.
 O usuario pode engadir unha nova nota (texto libre).
@@ -13,12 +12,17 @@ O programa pode listar todas as notas gardadas.
 
 O usuario pode buscar notas que conteñan unha palabra clave.
 '''
+from archivos_boletin11.boletin11ClassTarea import Tarea
+
 
 def ejercicio1():
-    with open('./archivos_boletin11/ejercicio1.txt',"w") as f:
+    with open('./archivos_boletin11/ejercicio1.txt',"a") as f:
         inputUsuario = str(input("Ingrese su nota: "))
-        f.write(inputUsuario)
-        f.close()
+        f.write("\n" + inputUsuario)
+
+    with open('./archivos_boletin11/ejercicio1.txt',"r") as f:
+        for i in f.readlines():
+            print(i)
 
 ejercicio1()
 
@@ -68,3 +72,9 @@ def ejercicio2_comprobar_palabra(palabra, lista):
     return True
 
 print(f"Ejercicio2: {ejercicio2()}")
+
+def ejercicio3():
+    tarea = Tarea()
+
+
+ejercicio3()
