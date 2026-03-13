@@ -14,6 +14,7 @@ O usuario pode buscar notas que conteñan unha palabra clave.
 '''
 from archivos_boletin11.boletin11ClassTarea import Tarea
 import pickle
+from archivos_boletin11.boletin11ClassCliente import Cliente
 
 def ejercicio1():
     with open('./archivos_boletin11/ejercicio1.txt',"a") as f:
@@ -144,61 +145,99 @@ def ejercicio3():
                 print("  ---  ")
                 print(i)
 
-ejercicio3()
+#ejercicio3()
 
 print("---------------------Ejercicio 4------------------")
 def ejercicio4():
-    class Cliente:
-        def __init__(self,id, nombre, telefono):
-            self.id = id
-            self.nombre = nombre
-            self.telefono = telefono
+    def updateFile():
+        with open("ejercicio4.dat","wb") as f:
+            pickle.dump(listaClientes,f)
 
-        @property
-        def id(self):
-            return self.__id
-        @property
-        def nombre(self):
-            return self.__nombre
-        @property
-        def telefono(self):
-            return self.__telefono
-        @id.setter
-        def id(self,id):
-            if isinstance(id, str):
-                if len(id) == 4:
-                    self.__id = id
-                else:
-                    raise ValueError
-            else:
-                raise TypeError
-        @nombre.setter
-        def nombre(self,nombre):
-            if isinstance(nombre, str):
-                self.__nombre = nombre
-            else:
-                raise TypeError
-        @telefono.setter
-        def telefono(self,telefono):
-            if isinstance(telefono, str):
-                if telefono.isdigit() and len(telefono) == 9:
-                    self.__telefono = telefono
-                else:
-                    raise ValueError
-            elif isinstance(telefono, int):
-                telefono = str(telefono)
-                if len(telefono) == 9:
-                    self.__telefono = telefono
-                else:
-                    raise ValueError
-            elif isinstance(telefono, float):
-                telefono = str(int(telefono))
-                if len(telefono) == 9:
-                    self.__telefono = telefono
-                else:
-                    raise ValueError
-            else:
-                raise TypeError
+    def updateList():
+        with open("ejercicio4.dat","rb") as f:
+            return pickle.load(f)
 
-        def __str__(self):
-            return f"Nombre:{self.__nombre}\nTelefono:{self.__telefono}\nid:{self.__id}"
+    listaClientes = updateList()
+
+    def anhadirCliente(cliente):
+        if isinstance(cliente,Cliente):
+            listaClientes.append(cliente)
+            return True
+        else:
+            raise False
+
+    def listarClientes():
+        for index,cliente in enumerate(listaClientes):
+            print("  ---  ")
+            print(f"{index} - {cliente}")
+
+    def modificarDatosCliente(indiceCliente,datoAModificar, datoNuevo):
+        try:
+            cliente = listaClientes[indiceCliente]
+            if datoAModificar == "nombre":
+                cliente.nombre = datoNuevo
+            elif datoAModificar == "id":
+                cliente.id = datoNuevo
+            elif datoAModificar == "telefono":
+                cliente.telefono = datoNuevo
+            else:
+                return False
+            return True
+
+        except Exception as e:
+            print(e)
+            return False
+
+    def eliminarCliente(indiceCliente):
+        try:
+            listaClientes.pop(indiceCliente)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+
+
+
+    print("1.Anhadir cliente\n2.Modificar datos cliente\n3.Eliminar Cliente\n4.Listar clientes")
+    opcion = int(input("Ingrese el numero de opcion: "))
+    match opcion:
+        case 1:
+            nombre = str(input("Ingrese nombre de la cliente nuevo: "))
+            id = str(input("Ingrese id de la cliente nuevo: "))
+            tel = str(input("Ingrese el telefono nuevo: "))
+            cliente = Cliente(id,tel,nombre)
+            anhadirCliente(cliente)
+        case 2:
+            print("Lista de clientes")
+            listarClientes()
+            indiceCliente = int(input("Ingrese el indice del cliente que quiere modificar: "))
+            opcionc = str(input("Que quiere modificar?\n1.Nombre\n2.id\n3.Telefono\n"))
+
+            match opcionc:
+                case 1:
+                    datoAModificar = "nombre"
+                    nuevoDato = str(input("Ingrese nombre del cliente nuevo: "))
+                    modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                case 2:
+                    datoAModificar = "id"
+                    nuevoDato = str(input("Ingrese id del cliente nuevo: "))
+                    modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                case 3:
+                    datoAModificar = "telefono"
+                    nuevoDato = str(input("Ingrese telefono nuevo: "))
+                    modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                case _:
+                    print("opción no valida")
+                    return False
+        case 3:
+            print("Lista de clientes")
+            listarClientes()
+            indiceCliente = int(input("Ingrese el indice del cliente que quiere eliminar: "))
+            eliminarCliente(indiceCliente)
+
+        case 4:
+            print("Lista de clientes")
+            listarClientes()
+
+ejercicio4()
