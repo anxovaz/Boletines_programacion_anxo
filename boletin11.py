@@ -12,13 +12,15 @@ O programa pode listar todas as notas gardadas.
 
 O usuario pode buscar notas que conteñan unha palabra clave.
 '''
-from logging import exception
+import csv
+
 
 from archivos_boletin11.boletin11ClassTarea import Tarea
 import pickle
 from archivos_boletin11.boletin11ClassCliente import Cliente
 
 def ejercicio1():
+    print("---------------------Ejercicio 1------------------")
     with open('./archivos_boletin11/ejercicio1.txt',"a") as f:
         inputUsuario = str(input("Ingrese su nota: "))
         f.write("\n" + inputUsuario)
@@ -29,7 +31,6 @@ def ejercicio1():
 
 ejercicio1()
 
-print("-------------------------------")
 
 '''
 Ler un ficheiro de texto e contar cantas veces aparece cada palabra.
@@ -45,7 +46,7 @@ Gárdase un resumo nun novo ficheiro resumo_palabras.txt.
 '''
 
 def ejercicio2():
-    print("Ejercicio2")
+    print("---------------------Ejercicio 2------------------")
     #fich = str(input("Introduce ruta del archivo: "))
     fich = "./archivos_boletin11/ejercicio2.txt"
     splitFich = []
@@ -76,9 +77,10 @@ def ejercicio2_comprobar_palabra(palabra, lista):
             break #solo me interesa la primera posición que es en la que va el nombre del elemento
     return True
 
-print(f"Ejercicio2: {ejercicio2()}")
-print("-------------------------------")
+print(ejercicio2())
+
 def ejercicio3():
+    print("---------------------Ejercicio 3------------------")
     def readFile():
         with open("./archivos_boletin11/tarefas.dat", "rb") as f:
             return pickle.load(f)
@@ -147,10 +149,27 @@ def ejercicio3():
                 print("  ---  ")
                 print(i)
 
-#ejercicio3()
+ejercicio3()
 
-print("---------------------Ejercicio 4------------------")
+
+"""
+Crea a aplicación que permita gardar e recuperar os datos dos clientes dunha empresa. Para o cal, defina a clase Cliente, que teña os atributos: 
+id, identificador de cliente
+nome
+teléfono
+	Os obxectos Cliente se recollerán nunha lista.
+	A aplicación terá un menú que posibilitará as seguintes opcións:
+Engadir novo cliente
+Modificar datos
+Dar de baixa clientes.
+Listar os clientes.
+	A información se gardará nun ficheiro binario, que cargará en memoria o iniciar o programa e se gardará en disco, actualizado o rematar. 
+
+"""
+
+
 def ejercicio4():
+    print("---------------------Ejercicio 4------------------")
     def updateFile():
         with open("./archivos_boletin11/ejercicio4.dat","wb") as f:
             pickle.dump(listaClientes,f)
@@ -258,3 +277,55 @@ def ejercicio4():
             listarClientes()
 
 ejercicio4()
+
+
+"""
+Realizar un programa para a xestión de Inventario. O programa ten que facer as seguintes operacións sobre un ficheiro CSV:
+Calculo do valor total do inventario: Dado un ficheiro produtos.csv (con columnas: id, nome, prezo, stock), o programa ten realizar o cálculo (prezo × stock).
+Existencias baixas: Crea un novo ficheiro baixo_stock.csv que conteña só os produtos cun número de existencias inferior a 5 unidades. Gardar no ficheiro id, nome e stock.
+
+"""
+
+
+
+def ejercicio5():
+    print("---------Ejercicio 5------------")
+    productos = []
+    def updateList():
+        with open("./archivos_boletin11/productos.csv","r") as f:
+            reader = csv.reader(f, delimiter=",")
+            for row in reader:
+                linea = []
+                for item in row:
+                    item.replace(" ", "") #quita espacios no deseados
+                    linea.append(item)
+                productos.append(linea)
+
+    updateList()
+    print(f"Productos Lista: {productos}")
+    def updateFileBajoStock(lista):
+        with open("./archivos_boletin11/baixo_stock.csv","w") as f:
+            writer = csv.writer(f, delimiter=",")
+            for i in lista:
+                    writer.writerow(i)
+
+
+    def calculoTotalInventario():
+        suma = 0
+        for i in productos:
+            suma += int(i[2]) * int(i[3])
+
+        return suma
+    print(f"Total: {calculoTotalInventario()}")
+
+    def calcularStock():
+        bajoStock = []
+        for i in productos:
+            if int(i[2]) < 5:
+                bajoStock.append(i)
+
+        updateFileBajoStock(bajoStock)
+
+    calcularStock()
+
+ejercicio5()
