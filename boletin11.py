@@ -12,6 +12,8 @@ O programa pode listar todas as notas gardadas.
 
 O usuario pode buscar notas que conteñan unha palabra clave.
 '''
+from logging import exception
+
 from archivos_boletin11.boletin11ClassTarea import Tarea
 import pickle
 from archivos_boletin11.boletin11ClassCliente import Cliente
@@ -150,12 +152,21 @@ def ejercicio3():
 print("---------------------Ejercicio 4------------------")
 def ejercicio4():
     def updateFile():
-        with open("ejercicio4.dat","wb") as f:
+        with open("./archivos_boletin11/ejercicio4.dat","wb") as f:
             pickle.dump(listaClientes,f)
 
     def updateList():
-        with open("ejercicio4.dat","rb") as f:
-            return pickle.load(f)
+        try:
+            with open("./archivos_boletin11/ejercicio4.dat","rb") as f:
+                return pickle.load(f)
+        except EOFError: #si está vacio el archivo
+            return []
+        except FileNotFoundError:
+            return -1
+        except Exception as e:
+            print(e)
+            return -1
+
 
     listaClientes = updateList()
 
@@ -208,25 +219,30 @@ def ejercicio4():
             tel = str(input("Ingrese el telefono nuevo: "))
             cliente = Cliente(id,tel,nombre)
             anhadirCliente(cliente)
+            updateFile()
         case 2:
             print("Lista de clientes")
             listarClientes()
             indiceCliente = int(input("Ingrese el indice del cliente que quiere modificar: "))
-            opcionc = str(input("Que quiere modificar?\n1.Nombre\n2.id\n3.Telefono\n"))
+            opcionc = int(input("Que quiere modificar?\n1.Nombre\n2.id\n3.Telefono\n"))
+            updateFile()
 
             match opcionc:
                 case 1:
                     datoAModificar = "nombre"
                     nuevoDato = str(input("Ingrese nombre del cliente nuevo: "))
                     modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                    updateFile()
                 case 2:
                     datoAModificar = "id"
                     nuevoDato = str(input("Ingrese id del cliente nuevo: "))
                     modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                    updateFile()
                 case 3:
                     datoAModificar = "telefono"
                     nuevoDato = str(input("Ingrese telefono nuevo: "))
                     modificarDatosCliente(indiceCliente,datoAModificar,nuevoDato)
+                    updateFile()
                 case _:
                     print("opción no valida")
                     return False
@@ -235,6 +251,7 @@ def ejercicio4():
             listarClientes()
             indiceCliente = int(input("Ingrese el indice del cliente que quiere eliminar: "))
             eliminarCliente(indiceCliente)
+            updateFile()
 
         case 4:
             print("Lista de clientes")
