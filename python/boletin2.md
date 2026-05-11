@@ -10,7 +10,7 @@ altura = 3
 
 ## Exercicio 2
 
-![ex2](./images/boletin2/exercicio2.png)
+![ex2](../images/boletin2/exercicio2.png)
 
 ## Exercicio 3
 
@@ -22,7 +22,7 @@ print(dolares)
 
 ## Exercicio 4
 
-![ex4](./images/boletin2/exercicio4.png)
+![ex4](../images/boletin2/exercicio4.png)
 
 
 ## Exercicio 5
@@ -35,10 +35,10 @@ print(metros)
 
 ## Exercicio 6
 
-![ex6](./images/boletin2/exercicio6.png)
+![ex6](../images/boletin2/exercicio6.png)
 
 
 ## Exercicio 7
 
-![ex7](./images/boletin2/exercicio7.png)
+![ex7](../images/boletin2/exercicio7.png)
 

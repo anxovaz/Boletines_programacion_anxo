@@ -1,6 +1,6 @@
 # Exercicio 1
 
-![ex1](./images/boletin1/exercicio1.png)
+![ex1](../images/boletin1/exercicio1.png)
 
 # Exercicio 2
 
@@ -8,7 +8,7 @@ Son válidas as variables: salto_mortal (a), cant_total (b), cant5 (b) e cantida
 
 # Exercicio 3
 
-![ex3](./images/boletin1/exercicio3.png)
+![ex3](../images/boletin1/exercicio3.png)
 
 # Exercicio 4
 
