@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import java.util.ListIterator;
 import java.util.Random;
 
 public class Boletin_Colecciones {
@@ -34,6 +35,15 @@ public class Boletin_Colecciones {
 
                  */
                 i--;
+            }
+        }
+
+        //iterator
+        ListIterator<Integer> listIterator = list.listIterator();
+        while(listIterator.hasNext()){
+            int i = listIterator.next();
+            if(list.get(i) == 5 | list.get(i) == 7) {
+                list.remove(list.get(i));
             }
         }
 
