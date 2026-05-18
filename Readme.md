@@ -3,8 +3,10 @@
 
 ## Anxo Vázquez Lorenzo
 
-Cada boletín tendrá como nome `boletin + número + extensión do arquivo`.
+Os boletíns de `java` están na capeta `./java/src/` e os de `python` na carpeta `./python`.
 
-A carpeta chamada `./images` contén as imaxes empregadas nos arquivos coa extensión `.md`
+Cada boletín tendrá como nome `boletin + número/nome + extensión do arquivo`.
 
-A carpeta chamada `./archivos_boletin11` se usará como ruta para los arquivos do `boletín 11`.
+A carpeta chamada `./images` contén as imaxes empregadas nos boletíns 1 e 2 de `python`.
+
+A carpeta chamada `./python/archivos_boletin11` se usará como ruta para los arquivos do `boletín 11`.
