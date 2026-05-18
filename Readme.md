@@ -1,7 +1,9 @@
-# Boletines ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+# Boletíns ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
  
 
-## Anxo Vázquez Lorenzo
+### Estudiante: Anxo Vázquez Lorenzo
+
+### Curso Estudiante: 1DAM
 
 Os boletíns de `java` están na capeta `./java/src/` e os de `python` na carpeta `./python`.
 
