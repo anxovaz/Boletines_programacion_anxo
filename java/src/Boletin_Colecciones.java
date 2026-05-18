@@ -1,12 +1,15 @@
-import java.util.ArrayList;
-
-import java.util.ListIterator;
-import java.util.Random;
+import java.util.*;
 
 public class Boletin_Colecciones {
     public static void main(String[] args){
+        //Ejercicio 1
+        System.out.println("---Ejercicio 1---");
+        String[] array1 = {"Hola", "adios"};
+        String[] array2 = {"Buenas", "chao"};
 
-        //Ejercicios 2 y 3
+        mostrarArray(ejercicio1(array1, array2));
+
+        System.out.println("---Ejercicios 2 y 3---");
         ArrayList<Integer> list = new ArrayList<>();
         int counter = 0;
         while (counter < 1000){
@@ -47,10 +50,60 @@ public class Boletin_Colecciones {
             }
         }
 
-
-
-
         System.out.println(list);
 
+
+
+        System.out.println("---Ejercicio 4---");
+        Scanner sc = new Scanner(System.in);
+        //Programa que lee los numeros por teclado y mete los positivos en el arrayList 'positivos' y los negativos en el 'negativos'
+        ArrayList<Integer> positivos = new ArrayList<Integer>();
+        ArrayList<Integer> negativos = new ArrayList<Integer>();
+        int num = 0;
+        while(true) {
+            System.out.println("introduce un número (0 = salir): ");
+            num = sc.nextInt();
+            if (num > 0) {
+                positivos.add(num);
+            } else if (num < 0) {
+                negativos.add(num);
+            } else { //si es 0
+                break;
+            }
+        }
+        System.out.println(positivos.toString());
+        System.out.println(negativos.toString());
+
+    }
+
+    private static String[] ejercicio1(String[] a1, String[] a2){
+        String[] a3 = Arrays.copyOf(a1, (a1.length + a2.length));
+        int contadorA2 = 0;
+        for(int i = a1.length; i<a3.length; i++){
+            a3[i]=a2[contadorA2];
+            contadorA2++;
+        }
+        return a3;
+
+    }
+    private static void mostrarArray(int[] array){
+        String salida = "";
+        for(int i = 0; i<array.length; i++){
+            salida = salida + array[i];
+            if(i!=array.length-1){
+                salida = salida + ", ";
+            }
+        }
+        System.out.println(salida);
+    }
+    private static void mostrarArray(String[] array){
+        String salida = "";
+        for(int i = 0; i<array.length; i++){
+            salida = salida + array[i];
+            if(i!=array.length-1){
+                salida = salida + ", ";
+            }
+        }
+        System.out.println(salida);
     }
 }

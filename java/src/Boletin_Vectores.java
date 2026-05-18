@@ -5,13 +5,24 @@ import java.util.Scanner;
 
 public class Boletin_Vectores {
     public static void main(String[] args) {
+        //Ejercicio 1
         System.out.println("Ejercicio 1");
+        Random r = new Random();
         int[] numeros = new int[6];
-        for (int i = 0; i < numeros.length; i++) {
-            int number = new Random().nextInt(1, 5);
-            numeros[i] = number;
+        String derecho = "derecho: ";
+        for(int i = 0; i<numeros.length; i++){
+            numeros[i] = r.nextInt(1,51);
+            derecho += numeros[i] + " ";
 
         }
+
+        String reves = "reves: ";
+        for(int i = numeros.length-1; i>=0;i--){
+            reves += numeros[i] + " ";
+        }
+
+        System.out.println(derecho);
+        System.out.println(reves);
         Boletin_Vectores.mostrarArray(numeros);
 
         System.out.println("Ejercicio 2");
