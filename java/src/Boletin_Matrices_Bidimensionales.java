@@ -183,6 +183,20 @@ Engadir unha actividade extra nunha posición valeira.
         System.out.println("Segundo: " + pedido[1]);
         System.out.println("Postre:  " + pedido[2]);
 
+
+        System.out.println("ejercicio 4");
+        /*
+        Crea o programa que siga as regras do xogo fundir a frota. As instrucións son:
+        Usa unha táboa de tamaño 4x4 para representar o taboleiro.
+        Enche o taboleiro colocando algúns barcos (B) en posicións aleatorias e o resto de casiñas con auga (~).
+           Mostra o taboleiro o usuario (podes mostrar só agua para ocultar os barcos).
+        Pregunta o usuario as coordenadas para "disparar" introducindo a fila e a columna.
+        Actualiza o taboleiro mostrando X si o disparo impacta nun barco ou O si falla.
+        Finaliza o xogo cando tódolos barcos sexan destruídos.
+
+         */
+        System.out.println("Ejecuta el main que hay en el paquete Hundir_la_flota");
+
     sc.close(); //cerrar entrada teclado
     }
     public static void mostrarArrayBidimensional(String[][] array){
