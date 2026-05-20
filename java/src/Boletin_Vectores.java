@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -130,10 +129,6 @@ public class Boletin_Vectores {
         System.out.println("Ejercicio 10");
         int[] ejercicio10a = {1,-12,3,0,5,9,7,1,4};
         mostrarArray(ejercicio10(ejercicio10a,3));
-
-
-
-
 
 
 
