@@ -72,6 +72,118 @@ Engadir unha actividade extra nunha posición valeira.
             }
 
         }
+
+
+        System.out.println("Ejercicio 2");
+        /*
+        Deseña un mapa para un videoxogo que represente habitacións conectadas.
+        Para iso crea unha táboa de 3x3 onde cada casiña represente unha habitación.
+        Enche a táboa con cadeas que describan os habitáculos, como "Entrada", "Tesouro", "Trampa", etc.
+        Permite o usuario elixir unha habitación introducindo a súa fila e columna para descubrir que contén.
+        Engade unha condición de vitoria si o usuario encontra o "Tesouro"
+         */
+        String[][] mapa = {
+                {"Entrada", "Pasillo oscuro", "Trampa de flechas"},
+                {"Biblioteca", "Sala vacía", "Monstruo durmiendo"},
+                {"Foso con agua", "Trampa de pinchos", "Tesouro"}
+        };
+
+        // Array de booleanos para llevar el registro de qué habitaciones ya se han descubierto
+        boolean[][] descubierto = new boolean[3][3];
+
+        boolean victoria = false;
+
+        System.out.println("¡Bienvenido al explorador de mazmorras!");
+        System.out.println("El mapa es de 3x3. Introduce filas y columnas del 0 al 2 para moverte.");
+        System.out.println("Tu objetivo es encontrar el 'Tesouro'. ¡Ten cuidado con las trampas!\n");
+
+        // 2. Bucle principal del juego
+        while (!victoria) {
+            System.out.print("Introduce la fila (0-2): ");
+            int fila = sc.nextInt();
+
+            System.out.print("Introduce la columna (0-2): ");
+            int columna = sc.nextInt();
+
+            // Validamos que los números estén dentro del rango del array (0, 1 o 2)
+            if (fila < 0 || fila > 2 || columna < 0 || columna > 2) {
+                System.out.println("Coordenadas inválidas. Recuerda que el mapa es de 3x3 (índices del 0 al 2).\n");
+                continue; // Vuelve al principio del bucle sin ejecutar el resto
+            }
+
+            // Obtenemos el contenido de la habitación seleccionada
+            String habitacion = mapa[fila][columna];
+            descubierto[fila][columna] = true;
+
+            if (habitacion.equals("Tesoro")) {
+                victoria = true;
+                System.out.println("Has encontrado el tesoro");
+            } else if (habitacion.startsWith("Trampa") || habitacion.equals("Monstruo durmiendo")) {
+                System.out.println("Esta habitacion parece peligrosa...");
+            } else {
+                System.out.println("Parece seguo");
+            }
+
+        }
+
+        System.out.println("Ejercicio 3");
+        /*
+        Dado un menú dun restaurante, con varios primeiros pratos, segundos e sobremesas:
+        Crear a función que permita mostrar o menú os comentáis.
+        Deseñar a función que Permita o usuario facer un pedido  devoltanto o resultado nun array con primeiro, segundo e sobremesa.
+
+         */
+        String[][] menu = {
+                {"Ensalada César", "Crema de calabaza"},
+                {"Filete", "Salmón"},
+                {"Flan", "Tarta"}
+        };
+
+
+        String[] categorias = {"primeros platos", "segundos platos", "postres"};
+        String[] fases = {"primer plato", "segundo plato", "postre"};
+
+        //mostrar el menú
+        System.out.println("menú del día:");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println("\n" + categorias[i]);
+            for (int j = 0; j < menu[i].length; j++) {
+                // Mostramos j + 1 para que el cliente vea 1, 2, 3... en vez de empezar desde 0
+                System.out.println((j + 1) + ". " + menu[i][j]);
+            }
+        }
+        System.out.println("---");
+
+
+
+        //crear pedido del usuario
+        String[] pedido = new String[3];
+
+
+        for (int i = 0; i < menu.length; i++) {
+            int eleccion = -1;
+
+            // Bucle para obligar al usuario a introducir un número válido dentro del menú
+            while (eleccion < 0 || eleccion >= menu[i].length) {
+                System.out.print("Elija el número de su " + fases[i] + ": ");
+                eleccion = sc.nextInt() - 1; // Restamos 1 para adaptarlo al índice del array (0, 1, 2...)
+
+                if (eleccion < 0 || eleccion >= menu[i].length) {
+                    System.out.println("Opción no válida. Por favor, seleccione un número de la lista.");
+                }
+            }
+
+            // Almacenamos el plato seleccionado directamente en el array del pedido
+            pedido[i] = menu[i][eleccion];
+        }
+
+
+        System.out.println("Pedido:");
+        System.out.println("Primero: " + pedido[0]);
+        System.out.println("Segundo: " + pedido[1]);
+        System.out.println("Postre:  " + pedido[2]);
+
+    sc.close(); //cerrar entrada teclado
     }
     public static void mostrarArrayBidimensional(String[][] array){
         for(int i = 0; i<array.length; i++){
