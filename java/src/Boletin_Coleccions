@@ -1,0 +1,156 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Boletin_Coleccions {
+
+    // Exercicio 1
+    public static <T> T[] concatenarTaboas(T[] taboa1, T[] taboa2) {
+        T[] resultado = Arrays.copyOf(taboa1, taboa1.length + taboa2.length);
+        System.arraycopy(taboa2, 0, resultado, taboa1.length, taboa2.length);
+        return resultado;
+    }
+
+    // Exercicio 7
+    static <E> Set<E> union(Set<E> conxunto1, Set<E> conxunto2) {
+        Set<E> resultado = new HashSet<>(conxunto1);
+        resultado.addAll(conxunto2);
+        return resultado;
+    }
+
+    // Exercicio 8
+    static <E> Set<E> interseccion(Set<E> conxunto1, Set<E> conxunto2) {
+        Set<E> resultado = new HashSet<>(conxunto1);
+        resultado.retainAll(conxunto2);
+        return resultado;
+    }
+
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.util.Objects.requireNonNull(System.in));
+        Random rand = new Random();
+
+        // Exercicio 1
+        System.out.println("--- EXERCICIO 1 ---");
+        Integer[] t1 = {1, 2, 3};
+        Integer[] t2 = {4, 5, 6};
+        Integer[] fusion = concatenarTaboas(t1, t2);
+        System.out.println(Arrays.toString(fusion));
+
+        // Exercicio 2
+        System.out.println("\n--- EXERCICIO 2 ---");
+        List<Integer> numerosE2 = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            numerosE2.add(rand.nextInt(10) + 1);
+        }
+        System.out.println("Antes: " + numerosE2);
+        numerosE2.removeIf(n -> n == 5 || n == 7);
+        System.out.println("Despois: " + numerosE2);
+
+        // Exercicio 3
+        System.out.println("\n--- EXERCICIO 3 ---");
+        List<Integer> numerosE3 = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            numerosE3.add(rand.nextInt(10) + 1);
+        }
+        System.out.println("Antes: " + numerosE3);
+        Iterator<Integer> it = numerosE3.iterator();
+        while (it.hasNext()) {
+            Integer num = it.next();
+            if (num == 5 || num == 7) {
+                it.remove();
+            }
+        }
+        System.out.println("Despois: " + numerosE3);
+
+        // Exercicio 4
+        System.out.println("\n--- EXERCICIO 4 ---");
+        List<Double> positivosE4 = new ArrayList<>();
+        List<Double> negativosE4 = new ArrayList<>();
+        double numReal;
+        System.out.println("Introduce números reais (0 para rematar):");
+        do {
+            numReal = teclado.nextDouble();
+            if (numReal > 0) {
+                positivosE4.add(numReal);
+            } else if (numReal < 0) {
+                negativosE4.add(numReal);
+            }
+        } while (numReal != 0);
+
+        System.out.println("Positivos: " + positivosE4);
+        System.out.println("Negativos: " + negativosE4);
+        
+        double sumaPos = 0;
+        for (double p : positivosE4) sumaPos += p;
+        double sumaNeg = 0;
+        for (double n : negativosE4) sumaNeg += n;
+        
+        System.out.println("Suma positivos: " + sumaPos);
+        System.out.println("Suma negativos: " + sumaNeg);
+
+        positivosE4.removeIf(n -> n > 10);
+        negativosE4.removeIf(n -> n < -10);
+        System.out.println("Positivos filtrados: " + positivosE4);
+        System.out.println("Negativos filtrados: " + negativosE4);
+
+        // Exercicio 5
+        System.out.println("\n--- EXERCICIO 5 ---");
+        List<Integer> positivosE5 = new ArrayList<>();
+        int numEntero;
+        System.out.println("Introduce números enteiros (-1 para rematar):");
+        while (true) {
+            numEntero = teclado.nextInt();
+            if (numEntero == -1) {
+                break;
+            }
+            if (numEntero >= 0) {
+                positivosE5.add(numEntero);
+            }
+        }
+        for (int i = 0; i < positivosE5.size(); i += 2) {
+            System.out.println("Índice " + i + ": " + (positivosE5.get(i) * 100));
+        }
+
+        // Exercicio 6
+        System.out.println("\n--- EXERCICIO 6 ---");
+        ArrayList<Integer> listaE6 = new ArrayList<>(List.of(1, 2, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8));
+        System.out.println("Lista: " + listaE6);
+        
+        Set<Integer> senRepetir = new HashSet<>(listaE6);
+        Set<Integer> repetidos = new HashSet<>();
+        Set<Integer> unicos = new HashSet<>();
+        Set<Integer> vistos = new HashSet<>();
+
+        for (Integer n : listaE6) {
+            if (vistos.contains(n)) {
+                repetidos.add(n);
+                unicos.remove(n);
+            } else {
+                unicos.add(n);
+                vistos.add(n);
+            }
+        }
+        System.out.println("Sen repetir: " + senRepetir);
+        System.out.println("Repetidos: " + repetidos);
+        System.out.println("Únicos: " + unicos);
+
+        // Exercicio 7
+        System.out.println("\n--- EXERCICIO 7 ---");
+        Set<String> c1 = Set.of("A", "B", "C");
+        Set<String> c2 = Set.of("C", "D", "E");
+        System.out.println("Unión: " + union(c1, c2));
+
+        // Exercicio 8
+        System.out.println("\n--- EXERCICIO 8 ---");
+        Set<Integer> cx1 = Set.of(1, 2, 3, 4);
+        Set<Integer> cx2 = Set.of(3, 4, 5, 6);
+        System.out.println("Intersección: " + interseccion(cx1, cx2));
+        
+        teclado.close();
+    }
+}
